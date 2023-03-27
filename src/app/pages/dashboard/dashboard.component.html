@@ -1,1 +1,108 @@
-<p>dashboard works!</p>
+<div class="container">
+    <div class="row justify-content-center mt-2 ">
+      <div class="col-md-12">
+        <div class="card shadow-lg p-5 mb-5 mt-5">
+         <h2>Welcome</h2> <h6 class="alert alert-success" role="alert"> {{message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+          
+        
+          <form [formGroup]="logbook">
+             <p> <label for="trainername" style="color:rgb(14, 15, 15);">Trainer Name:</label>
+              <input type="text" id="trainer" name="trainer" formControlName="trainer" class="form-control">
+            </p>
+   <table class="table table-bordered" formArrayName="trainies">
+            <tr>
+                <th colspan="1">Add Trainy:</th>
+                <th width="150px"><button type="button" (click)="addTrainy()" class="btn btn-primary">Add More</button>
+                </th>
+            </tr>
+            <tr *ngFor="let trainy of trainies().controls; let i=index" [formGroupName]="i">
+                <td>
+                  Trainy :
+                  <input type="text" formControlName="trainy" class="form-control">
+                </td>
+                
+                <td>
+                  <button (click)="removeTrainy(i)" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+  
+              <!--------------------------------------------------->
+            <tr>
+                <th>Drone:</th>
+                <th width="150px"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Add Drone
+              </button> </th>
+              <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Drone Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="name-input" class="form-label">UIN_NO:</label>
+                                <input type="text" class="form-control" id="name-input" formControlName="uinno">
+                            </div>
+                            <div class="mb-3">
+                                <label for="class-input" class="form-label">class:</label>
+                                <select class="form-control" id="class-input" formControlName="class">
+                                    <option value="">--Select a class type--</option>
+                                    <option value="nano">Nano</option>
+                                    <option value="micro">Micro</option>
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="catogory-input" class="form-label">Catogory:</label>
+                                <select class="form-control" id="catogory-input" formControlName="catogory">
+                                    <option value="">--Select a catogory type--</option>
+                                    <option value="rotor">Rotor</option>
+                                    <option value="aeroplane">Aeroplane</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add Drone_Info</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <br/>
+            </tr>  </table>
+                
+                  <label class="control-label">Start date <span style="font-style: italic;"> - required</span></label>
+                  <input formControlName="startDate"  type="date" class="form-control"
+                      placeholder="mm/dd/yyyy" />  
+                    
+                    <small  class="form-control-feedback">Start date is required.</small>
+                    <label class="control-label">End date <span style="font-style: italic;"> - required</span></label>
+                    <input formControlName="endDate" type="date" class="form-control" placeholder="mm/dd/yyyy" />
+  
+                    <label class="control-label">Duration <span style="font-style: italic;"> - required</span></label>
+                    <input formControlName="duration" type="date" class="form-control" placeholder="mm/dd/yyyy" />
+               <br/><br/>
+           
+              <button class="btn btn-outline-primary btn-block" (click)="logbook_submit()">
+                submit &nbsp;&nbsp;<a routerLink="/dashboard">
+                </a>
+            </button>
+  
+  
+  
+          </form>
+  
+          <br />
+          {{this.logbook.value | json}}
+        </div>
+      </div>
+    </div>
+  </div>
