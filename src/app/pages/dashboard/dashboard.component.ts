@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(private fb: FormBuilder ,private auth: AuthService) {
     this.logbook = this.fb.group({
       'trainer': ['', Validators.required],
-      'trainy': ['', Validators.required],
+      'trainee': ['', Validators.required],
       'drone': ['', Validators.required],
       'startDate': ['', Validators.required],
       'endDate': ['', Validators.required],
