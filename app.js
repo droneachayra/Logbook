@@ -12,7 +12,7 @@ db.on('error',(err)=>{
     console.log(err)
 })
 db.once('open',()=>{
-    console.log("Database Connection Established!...")
+    console.log("Database Connection Established!")
 })
 
 
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/auth',authRoute);
 app.get('/',(req,res) => {
-    res.send('welcome to Timesheet .... ')
+    res.send('Welcome to Logbook')
 })
 app.listen(port,()=>{
     console.log("Node server is connected..",port)

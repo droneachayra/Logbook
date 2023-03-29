@@ -1,125 +1,60 @@
-.bg-info {
-    background-color: #653751 !important;
-  }
-.footer{
-    background-color: black;
-    color:blanchedalmond;
+.footer {
+  background-color:#653751;
+  color: #fff;
+  padding: 50px 0;
 }
-.fa {
- 
-    font-size: 30px;
-    width: 50px;
-    text-align: center;
-    text-decoration: none;
-    margin: 3px 1px;
-  }
-  
-  .fa:hover {
-      opacity: 0.7;
-  }
-  
-  .fa-facebook {
-    
-    color: white;
-  }
-  
-  .fa-twitter {
-   
-    color: white;
-  }
-  
-  .fa-google {
-   
-    color: white;
-  }
-  
-  .fa-linkedin {
-
-    color: white;
-  }
-  
-  .fa-youtube {
-    
-    color: white;
-  }
-  
-  .fa-instagram {
-   
-    color: white;
-  }
-  
-  .fa-pinterest {
-  
-    color: white;
-  }
-  
-  .fa-snapchat-ghost {
- 
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-  
-  .fa-skype {
-   
-    color: white;
-  }
-  
-  .fa-android {
-
-    color: white;
-  }
-  
-  .fa-dribbble {
- 
-    color: white;
-  }
-  
-  .fa-vimeo {
-   
-    color: white;
-  }
-  
-  .fa-tumblr {
-  
-    color: white;
-  }
-  
-  .fa-vine {
-
-    color: white;
-  }
-  
-  .fa-foursquare {
- 
-    color: white;
-  }
-  
-  .fa-stumbleupon {
-  
-    color: white;
-  }
-  
-  .fa-flickr {
-
-    color: white;
-  }
-  
-  .fa-yahoo {
- 
-    color: white;
-  }
-  
-  .fa-soundcloud {
-  
-    color: white;
-  }
-  
-  .fa-reddit {
-   
-    color: white;
-  }
-  
-  .fa-rss {
-  
-    color: white;
-  }
+.footer h4 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+.footer p {
+  margin-bottom: 0;
+}
+.social-icons {
+  list-style: none;
+  padding: 0;
+}
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.social-icons li:last-child {
+  margin-right: 0;
+}
+.social-icons a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.social-icons a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.col-md-4 {
+  visibility: hidden;
+}
+/* Make the columns stack vertically on small screens */
+@media (max-width: 768px) {
+.footer .col-md-3, .footer .col-md-4, .footer .col-md-5 {
+  margin-bottom: 20px;
+}
+.footer .list-inline {
+  text-align: center;
+}
+}
+/* Center the social icons on extra-small screens */
+@media (max-width: 480px) {
+.footer .list-inline {
+  display: block;
+}
+.footer .list-inline li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+}

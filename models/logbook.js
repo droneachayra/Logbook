@@ -2,14 +2,18 @@ const mongoose =require('mongoose');
 const Schema=mongoose.Schema;
 
 const logSchema=new Schema({
-    trainer:{type:Array},
-    trainee:{type:String,unique:true},
-    drone:{type:String,required:true},
-    startDate:{type:String,required:true},
-    endDate:{type:String,required:true},
-    duration:{type:String,required:true},
-    create_at:{type:Number,default:Date.now().valueOf()},
-    updated_at:{type:Number,default:Date.now().valueOf()}
-})
+    trainer:{type:Array, required:true},
+    trainee:{type:Array,required:true},
+    drone:{type:Array,required:true},
+    startDate:{type:Date,required:true},
+    startTime:{type:Date,required:true},
+    examiner:{type:String,required:true},
+    examtime:{type:Number, required:true},
+    examUin:{type:String,required:true}
+});
+logSchema.pre("save", function (next) {
+    this.examUin = this.examUin.toUpperCase();
+    next();
+});
 
 module.exports=mongoose.model('logbook',logSchema);

@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Logboook = require('../models/logbook');
 const User = require('../models/user');
+const Trainer = require('../models/trainers');
+const Drone = require('../models/drones');
 const bcrypt = require('bcrypt');
 const jwt =require('jsonwebtoken');
 
@@ -70,6 +72,42 @@ router.post('/logbook', (req, res) => {
          return res.json({ succses: false, message: "Trainy is Already exist ! " })
       }
       res.json({ succses: false, message: "Authentication failed" })
+   })
+});
+
+
+/*************************************************/
+router.post('/trainer', (req, res) => {
+   const trainer = new Trainer({
+      name: req.body.name,
+   })
+   trainer.save()
+   .then((_) => {
+      res.json({success:true, message: "Trainer added"})
+   })
+   .catch((err) => {
+      if(err.code === 11000) {
+         return res.json({success:true, message: "Trainer already present"})
+      }
+      res.json({success:false, message: err})
+   })
+});
+
+router.post('/drone', (req, res) => {
+   const drone = new Drone({
+      uin: req.body.uin,
+      class: req.body.class,
+      category: req.body.category
+   })
+   drone.save()
+   .then((_) => {
+      res.json({success:true, message: "Drone added"})
+   })
+   .catch((err) => {
+      if(err.code === 11000) {
+         return res.json({success:true, message: "Drone already present"})
+      }
+      res.json({success:false, message: err})
    })
 });
 

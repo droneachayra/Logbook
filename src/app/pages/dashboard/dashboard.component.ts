@@ -68,16 +68,15 @@ export class DashboardComponent implements OnInit {
     let inputText = (<HTMLInputElement>document.getElementById("newTrainee")).value;
     // (<HTMLInputElement>document.getElementById("traineeList")).value = this.traineeList.toString();
 		this.traineeList.push(inputText);
-		console.log(this.traineeList);
 
 		let li = document.createElement("li");
-		li.innerHTML = `${inputText} <button class="close" onclick="removeFromArr('${inputText}')"><span aria-hidden="true">&times;</span></button>`;
-    console.log(li)
+		li.innerHTML = `${inputText} <button class="btn" onclick="removeFromArr('${inputText}')"><span>&times;</span></button>`;
 		document.getElementById("list")!.appendChild(li)!;
   }
 
   removeFromArr(value:any) {
     let index = this.traineeList.indexOf(value);
+    console.log(index)
     if (index > -1) {
       this.traineeList.splice(index, 1);
     }
@@ -109,5 +108,11 @@ export class DashboardComponent implements OnInit {
       //alert('ssssddddd');
       alert(err)
     })
+  }
+
+  getDroneInfo(){
+    const info = this.droneInfo.value;
+    this.logbook.controls['drone'].setValue(info);
+    this
   }
 }

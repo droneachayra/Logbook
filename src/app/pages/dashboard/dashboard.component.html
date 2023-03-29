@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="card shadow-lg p-5 mb-5 mt-5">
         <h2>Welcome</h2> 
-        <h6 class="alert alert-success" role="alert"> {{message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>                  
+        <!-- <h6 class="alert alert-success" role="alert"> {{message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>                   -->
           
         <form [formGroup]="logbook">
           <p>
@@ -24,19 +24,19 @@
             <tr>  
               <td>Add Trainee:
                 <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value="">
+                <ul id="list"></ul>
               </td>                
               <td>
                 <!-- <button (click)="removeTrainee(i)" class="btn btn-danger">Remove</button> -->
-                <button (click)="newTrainee()" class="btn btn-outline-primary">Add</button>
+                <button (click)="newTrainee()" class="btn btn-primary">Add</button>
               </td>
-              <ul id="list"></ul>
             </tr>
 
             <tr>
-              <th>Add Drone:</th>
+              <th>Drone:</th>
               <th width="150px">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Add More
+                  Add
                 </button>              
               </th>
             </tr> 
@@ -61,54 +61,56 @@
   
           <br />
           <!-- {{this.logbook.value | json}} -->
-        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Drone Info</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Drone Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form [formGroup]="droneInfo">
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="name-input" class="form-label">UIN_NO:</label>
+          <select class="form-control" id="class-input" formControlName="uinno">
+            <option value="UA0003X" selected>UA0003X</option>
+            <option value="UA0003W">UA0003W</option>
+            <option value="UA000GF">UA000GF</option>
+          </select>
         </div>
-        <form [formGroup]="droneInfo">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="name-input" class="form-label">UIN_NO:</label>
-            <input type="text" class="form-control" id="name-input" formControlName="uinno">
-          </div>
-          <div class="mb-3">
-            <label for="class-input" class="form-label">class:</label>
-            <select class="form-control" id="class-input" formControlName="class">
-              <option value="">--Select a class type--</option>
-              <option value="nano">Nano</option>
-              <option value="micro">Micro</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="category-input" class="form-label">Category:</label>
-            <select class="form-control" id="category-input" formControlName="category">
-              <option value="">--Select a category type--</option>
-              <option value="rotor">Rotor</option>
-              <option value="aeroplane">Aeroplane</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
+        <div class="mb-3">
+          <label for="class-input" class="form-label">class:</label>
+          <select class="form-control" id="class-input" formControlName="class">
+            <option value="nano" selected>Nano</option>
+            <option value="micro">Micro</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
         </div>
-      </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add Drone_Info</button>
+        <div class="mb-3">
+          <label for="category-input" class="form-label">Category:</label>
+          <select class="form-control" id="category-input" formControlName="category">
+            <option value="rotor" selected>Rotor</option>
+            <option value="aeroplane">Aeroplane</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="other">Other</option>
+          </select>
         </div>
       </div>
-    </div>
+    </form>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" (click)="getDroneInfo()" data-dismiss="modal">Add Drone Info</button>
+    </div>  
+  </div>
+</div>
   </div>

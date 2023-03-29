@@ -1,3 +1,13 @@
-.bg-info {
-    background-color: #653751 !important;
-  }
+strong {
+  padding:15px;
+}
+.navbar {
+  padding-top: 8px; /* increase the top padding */
+  padding-bottom: 8px; /* increase the bottom padding */
+  background-color: #653751 ;
+}
+img{
+  margin-left: 15px;
+  width: 60px;
+  height: 55px
+}
