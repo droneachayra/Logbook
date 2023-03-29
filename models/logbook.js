@@ -2,7 +2,7 @@ const mongoose =require('mongoose');
 const Schema=mongoose.Schema;
 
 const logSchema=new Schema({
-    trainer:{type:String},
+    trainer:{type:Array},
     trainee:{type:String,unique:true},
     drone:{type:String,required:true},
     startDate:{type:String,required:true},
