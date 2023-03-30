@@ -1,0 +1,14 @@
+.container {
+    margin-top: 20px;
+    padding-bottom: 50px;
+    /* position:absolute; */
+    /* margin: 20px 20px;add left and right margin */
+    
+  }
+#image{
+    background-image: url(https://droneacharya.com/wp-content/uploads/2021/05/Main-Page-Light.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
