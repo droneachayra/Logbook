@@ -12,3 +12,7 @@
     background-size: cover;
     position: relative;
 }
+
+.modal-container{
+    padding: 10px;
+}

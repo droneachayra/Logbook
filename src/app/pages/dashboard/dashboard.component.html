@@ -8,7 +8,7 @@
           <h2 class="text-center mb-4">Data Entry Form</h2>
           <form [formGroup]="logbook">
             <div class="form-group">
-              <label for="trainers">Trainers</label>
+              <label for="trainers"><strong>Trainers</strong></label>
               <div class="input-group">
                 <input type="text" class="form-control" id="trainers" placeholder="Enter Trainer's Name">
                 <div class="input-group-append">
@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="trainees">Trainees</label>
+              <label for="trainees"><strong>Trainees</strong></label>
               <div class="input-group">
                 <input type="text" class="form-control" id="trainees" placeholder="Enter Trainee's Name">
                 <div class="input-group-append">
@@ -31,7 +31,7 @@
             </div> -->
             <div class="form-group">
               <!-- <select class="form-control" id="uin"> -->
-                <label for="uin">UIN</label>
+                <label for="uin"><strong>UIN</strong></label>
                 <div *ngFor="let item of drones" id="uin">
                   <input type="checkbox" [value]=item.uin>{{item.uin}}
                 </div>
@@ -40,34 +40,34 @@
               <!-- </select> -->
             </div>
             <div class="form-group">
-              <label for="placeofop">Place of Operation</label>
+              <label for="placeofop"><strong>Place of Operation</strong></label>
               <input type="text" class="form-control" id="placeofop" placeholder="Enter Place of Operation">
             </div>
             <div class="form-group">
-              <label for="startday1">Start Day -1</label>
+              <label for="startday1"><strong>Start-Date </strong></label>
               <input type="number" class="form-control" id="startday1">
             </div>
             <div class="form-group">
-              <label for="starttime1">Start-Time (Day 1)</label>
+              <label for="starttime1"><strong>Start-Time (Day 1)</strong></label>
               <input type="time" class="form-control" id="starttime1">
             </div>
             <div class="form-group">
-              <label for="starttime2">Start-Time (Day-2)</label>
+              <label for="starttime2"><strong>Start-Time (Day-2)</strong></label>
               <input type="time" class="form-control" id="starttime2">
             </div>
             <div class="form-group">
-              <label for="examiner">Examiner</label>
+              <label for="examiner"><strong>Examiner</strong></label>
               <select class="form-control" id="examiner">
                 <option *ngFor="let item of trainers" value="item.name">{{item.name}}</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="examtime">Exam - Time</label>
+              <label for="examtime"><strong>Exam - Time</strong></label>
               <input type="time" class="form-control" id="examtime">
             </div>
           
             <div class="form-group">
-              <label for="examuin">UIN</label>
+              <label for="examuin"><strong>UIN</strong></label>
               <select class="form-control" id="examuin">
                 <option *ngFor="let item of drones" value="item">{{item.uin}}</option>
               </select>
@@ -78,18 +78,18 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Drone Info</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Select Trainers</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div *ngFor="let item of trainers">
-                    <label class="checkbox-inline">
-                      <input type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" >{{item.name}}
-                    </label>
+                  <div class="modal-container" *ngFor="let item of trainers">
+                    <!-- <label class="checkbox-inline"> -->
+                      <input type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
+                    <!-- </label> -->
                   </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary"  data-dismiss="modal">Add Drone Info</button>
+                  <button type="button" class="btn btn-primary"  data-dismiss="modal">Add Trainers</button>
                 </div>
               </div>
             </div>
@@ -106,7 +106,11 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value="">
+                  <!-- <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value=""> -->
+                  <input type="text" id="trainees" placeholder="Enter Trainee's Name">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" data-toggle="modal">Select Trainee</button>
+                </div>
                   <ul id="list"></ul>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="newTrainee()">Wasssup Homie</button>
