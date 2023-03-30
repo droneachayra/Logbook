@@ -11,9 +11,5 @@ const logSchema=new Schema({
     examtime:{type:Number, required:true},
     examUin:{type:String,required:true}
 });
-logSchema.pre("save", function (next) {
-    this.examUin = this.examUin.toUpperCase();
-    next();
-});
 
 module.exports=mongoose.model('logbook',logSchema);

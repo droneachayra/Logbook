@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  private readonly apiUrl = 'http://localhost:8080/auth/';
+
   constructor(private http: HttpClient) { }
   reglogbook(data: any): Observable<any> {
     return this.http.post('http://localhost:8080/auth/register', data)
@@ -17,6 +19,16 @@ export class AuthService {
 
   signin(data: any): Observable<any> {
     return this.http.post('http://localhost:8080/auth/login', data)
+  }
+
+  gettrainer(){
+    const url = `${this.apiUrl}getTrainer`;
+    return this.http.get(url);
+  }
+
+  getdrone(){
+    const url = `${this.apiUrl}getDrone`;
+    return this.http.get(url);
   }
 
 }

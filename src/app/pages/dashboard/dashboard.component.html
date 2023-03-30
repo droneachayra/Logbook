@@ -1,9 +1,9 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row justify-content-center mt-2 ">
     <div class="col-md-12">
       <div class="card shadow-lg p-5 mb-5 mt-5">
         <h2>Welcome</h2> 
-        <!-- <h6 class="alert alert-success" role="alert"> {{message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>                   -->
+        <h6 class="alert alert-success" role="alert"> {{message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>                  
           
         <form [formGroup]="logbook">
           <p>
@@ -12,22 +12,22 @@
           </p>
           
           <table class="table table-bordered">
-            <!-- <tr>
+            <tr>
               <th colspan="1">
                 Add Trainee:
                 <input id="traineeList" style="width: 70%;" type="text" readonly class="form-control">
               </th>
               <th width="150px"><button type="button" (click)="addTrainee()" class="btn btn-primary">Add More</button></th>
-            </tr> -->
+            </tr>
 
-            <!-- <tr *ngFor="let trainy of trainees().controls; let i=index" [formGroupName]="i"> -->
+            <tr *ngFor="let trainy of trainees().controls; let i=index" [formGroupName]="i">
             <tr>  
               <td>Add Trainee:
                 <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value="">
                 <ul id="list"></ul>
               </td>                
               <td>
-                <!-- <button (click)="removeTrainee(i)" class="btn btn-danger">Remove</button> -->
+                <button (click)="removeTrainee(i)" class="btn btn-danger">Remove</button>
                 <button (click)="newTrainee()" class="btn btn-primary">Add</button>
               </td>
             </tr>
@@ -60,13 +60,13 @@
         </form>
   
           <br />
-          <!-- {{this.logbook.value | json}} -->
+          {{this.logbook.value | json}}
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+Modal
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -86,25 +86,6 @@
             <option value="UA000GF">UA000GF</option>
           </select>
         </div>
-        <div class="mb-3">
-          <label for="class-input" class="form-label">class:</label>
-          <select class="form-control" id="class-input" formControlName="class">
-            <option value="nano" selected>Nano</option>
-            <option value="micro">Micro</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="category-input" class="form-label">Category:</label>
-          <select class="form-control" id="category-input" formControlName="category">
-            <option value="rotor" selected>Rotor</option>
-            <option value="aeroplane">Aeroplane</option>
-            <option value="hybrid">Hybrid</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
       </div>
     </form>
     <div class="modal-footer">
@@ -113,4 +94,133 @@
     </div>  
   </div>
 </div>
+  </div> -->
+
+
+
+  <!-- rgkjwlrwrneebjnjogrjetwewbewibu -->
+
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="card shadow-lg p-5">
+          <h2 class="text-center mb-4">Data Entry Form</h2>
+          <form [formGroup]="logbook">
+            <div class="form-group">
+              <label for="trainers">Trainers</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="trainers" placeholder="Enter Trainer's Name">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Select  Trainer</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trainees">Trainees</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="trainees" placeholder="Enter Trainee's Name">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1">Select Trainee</button>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label for="trainees">Trainees</label>
+              <input type="text" class="form-control" id="trainees" placeholder="Enter Trainee's Name">
+            </div> -->
+            <div class="form-group">
+              <!-- <select class="form-control" id="uin"> -->
+                <label for="uin">UIN</label>
+                <div *ngFor="let item of drones" id="uin">
+                  <input type="checkbox" [value]=item.uin>{{item.uin}}
+                </div>
+              
+                <!-- <option *ngFor="let item of drones" value="item.name">{{item.uin}}</option> -->
+              <!-- </select> -->
+            </div>
+            <div class="form-group">
+              <label for="placeofop">Place of Operation</label>
+              <input type="text" class="form-control" id="placeofop" placeholder="Enter Place of Operation">
+            </div>
+            <div class="form-group">
+              <label for="startday1">Start Day -1</label>
+              <input type="number" class="form-control" id="startday1">
+            </div>
+            <div class="form-group">
+              <label for="starttime1">Start-Time (Day 1)</label>
+              <input type="time" class="form-control" id="starttime1">
+            </div>
+            <div class="form-group">
+              <label for="starttime2">Start-Time (Day-2)</label>
+              <input type="time" class="form-control" id="starttime2">
+            </div>
+            <div class="form-group">
+              <label for="examiner">Examiner</label>
+              <select class="form-control" id="examiner">
+                <option *ngFor="let item of trainers" value="item.name">{{item.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="examtime">Exam - Time</label>
+              <input type="time" class="form-control" id="examtime">
+            </div>
+            <!-- <div class="form-group">
+              <label for="examuin">Exam - UIN</label>
+              <input type="text" class="form-control" id="examuin" placeholder="Enter Exam UIN">
+            </div> -->
+            <div class="form-group">
+              <label for="examuin">UIN</label>
+              <select class="form-control" id="examuin">
+                <option *ngFor="let item of drones" value="item">{{item.uin}}</option>
+              </select>
+            </div>
+
+            <!-- Trainers modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Drone Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div *ngFor="let item of trainers">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" >{{item.name}}
+                    </label>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"  data-dismiss="modal">Add Drone Info</button>
+                </div>
+              </div>
+            </div>
+            </div>
+
+
+            <!-- trainee modal -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" >Add Trainers</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value="">
+                  <ul id="list"></ul>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="newTrainee()">Wasssup Homie</button>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>

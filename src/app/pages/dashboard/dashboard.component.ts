@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators ,FormArray,FormControl, Form} from '@angular/forms';
+import { json } from 'body-parser';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -16,29 +17,29 @@ export class DashboardComponent implements OnInit {
   name = 'Angular';
   traineeList:any[] = [];
 	list = document.getElementById("list");
+  trainers:any;
+  drones:any;
  
   constructor(private fb: FormBuilder ,private auth: AuthService) {
     this.logbook = this.fb.group({
-      'trainer': ['', Validators.required],
+      'trainers': ['', Validators.required],
       'trainee': ['', Validators.required],
       'drone': ['', Validators.required],
       'startDate': ['', Validators.required],
       'endDate': ['', Validators.required],
       'duration': ['', Validators.required],
-    
-      trainees: this.fb.array([]) ,  
     }); 
 
-    this.droneInfo = this.fb.group({
-      'uinno': ['', Validators.required],
-      'class': ['', Validators.required],
-      'category': ['', Validators.required]
-    })
-
-    this.trainees;
   }
 
   ngOnInit():void{
+    this.auth.gettrainer().subscribe((data) => {
+      this.trainers = data
+    })  
+
+    this.auth.getdrone().subscribe((data) => {
+      this.drones = data;
+    })  
 
   }
 
