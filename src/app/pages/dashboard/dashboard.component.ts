@@ -11,13 +11,10 @@ import { AuthService } from 'src/app/service/auth.service';
 export class DashboardComponent implements OnInit {
   logbook!: FormGroup;
   droneInfo!: FormGroup
-  message:string='';
-  isProcess:Boolean=false;
-  className='d-none';
-  name = 'Angular';
   traineeList:any[] = [];
 	list = document.getElementById("list");
   trainers:any;
+  trainerslist:any[]=[];
   drones:any;
  
   constructor(private fb: FormBuilder ,private auth: AuthService) {
@@ -43,39 +40,17 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  trainees() : FormArray {  
-    return this.logbook.get("trainees") as FormArray  
-  }  
-     
-  newTrainy(): FormGroup {  
-    return this.fb.group({  
-      trainy: '',    
-    })  
-  }  
-     
-  addTrainee() {  
-    this.trainees().push(this.newTrainy());  
-  }  
-     
-  removeTrainee(i:number) {  
-    this.trainees().removeAt(i);  
-  }  
-
-  updateTrainee(){
-    this.logbook_submit();
-  }
-
   newTrainee(){
-    let inputText = (<HTMLInputElement>document.getElementById("newTrainee")).value;
+    let inputText = (<HTMLInputElement>document.getElementById("trainees")).value;
     // (<HTMLInputElement>document.getElementById("traineeList")).value = this.traineeList.toString();
 		this.traineeList.push(inputText);
 
 		let li = document.createElement("li");
-		li.innerHTML = `${inputText} <button class="btn" onclick="removeFromArr('${inputText}')"><span>&times;</span></button>`;
+		li.innerHTML = `${inputText} <button class="btn" onclick="removeTrainee('${inputText}')"><span>&times;</span></button>`;
 		document.getElementById("list")!.appendChild(li)!;
   }
 
-  removeFromArr(value:any) {
+  removeTrainee(value:any) {
     let index = this.traineeList.indexOf(value);
     console.log(index)
     if (index > -1) {
@@ -88,32 +63,20 @@ export class DashboardComponent implements OnInit {
   }
      
   logbook_submit() {
-  // this.isProcess=true;
-    const data = this.logbook.value;
-    delete data['confirm'];
-    this.auth.reglogbook(data).subscribe(res => {
-      if(res.success){
-        // alert('ssss');
-        this.isProcess=false;
-        this.message="Account has been Created! ...";
-        this.className="alert alert-success";
-      }else{
-        // alert('dddd');
-        this.isProcess=false;
-        this.message="server error..";
-        this.className="alert alert-danger";
-      }
-      // alert("user register succ ....");
-      // this.signupFrom.reset();
-    }, err => {
-      //alert('ssssddddd');
-      alert(err)
-    })
+
   }
 
   getDroneInfo(){
     const info = this.droneInfo.value;
     this.logbook.controls['drone'].setValue(info);
     this
+  }
+
+  onChange(value:any){
+    if (this.trainerslist.includes(value)) {
+      this.trainerslist = this.trainerslist.filter((item:any) => item !== value);
+    } else {
+      this.trainerslist.push(value);
+    }
   }
 }

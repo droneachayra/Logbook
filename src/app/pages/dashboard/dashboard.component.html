@@ -85,7 +85,7 @@
                   </div>
                   <div class="modal-container" *ngFor="let item of trainers">
                     <!-- <label class="checkbox-inline"> -->
-                      <input type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
+                      <input (change)="onChange(item.name)" type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
                     <!-- </label> -->
                   </div>
                 <div class="modal-footer">
@@ -106,14 +106,19 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <!-- <input id="newTrainee" type="text" formControlName="trainee" class="form-control" value=""> -->
-                  <input type="text" id="trainees" placeholder="Enter Trainee's Name">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" data-toggle="modal">Select Trainee</button>
-                </div>
-                  <ul id="list"></ul>
+                  <div class="modal-container input-group">
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="trainees" placeholder="Enter Trainee's Name">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="newTrainee()">Add Trainee</button>
+                      </div>
+                    </div>
+                    <label for="list">Added trainees:</label>
+                    <ul id="list"></ul>                    
+                  </div>
+                 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="newTrainee()">Wasssup Homie</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Wasssup Homie</button>
                 </div>
               </div>
             </div>
