@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
 	list = document.getElementById("list");
   trainers:any;
   trainerslist:any[]=[];
+  droneslist:any[]=[];
   drones:any;
  
   constructor(private fb: FormBuilder ,private auth: AuthService) {
@@ -42,24 +43,22 @@ export class DashboardComponent implements OnInit {
 
   newTrainee(){
     let inputText = (<HTMLInputElement>document.getElementById("trainees")).value;
-    // (<HTMLInputElement>document.getElementById("traineeList")).value = this.traineeList.toString();
 		this.traineeList.push(inputText);
-
-		let li = document.createElement("li");
-		li.innerHTML = `${inputText} <button class="btn" onclick="removeTrainee('${inputText}')"><span>&times;</span></button>`;
-		document.getElementById("list")!.appendChild(li)!;
   }
 
   removeTrainee(value:any) {
     let index = this.traineeList.indexOf(value);
-    console.log(index)
     if (index > -1) {
       this.traineeList.splice(index, 1);
     }
-    console.log(this.traineeList);
+  }
 
-    let li = document.querySelector(`li:contains(${value})`);
-    li!.parentNode!.removeChild(li!);
+  updateTraineeInput(){
+    (<HTMLInputElement>document.getElementById("traineeForm")).value = this.traineeList.toString();
+  }
+
+  updateTrainerInput(){
+    (<HTMLInputElement>document.getElementById("trainers")).value = this.trainerslist.toString();
   }
      
   logbook_submit() {
@@ -72,11 +71,48 @@ export class DashboardComponent implements OnInit {
     this
   }
 
-  onChange(value:any){
-    if (this.trainerslist.includes(value)) {
-      this.trainerslist = this.trainerslist.filter((item:any) => item !== value);
-    } else {
-      this.trainerslist.push(value);
+  onChange(event:any){
+    const value = event.target.value;
+    if(this.trainerslist.length < 3 || this.trainerslist.includes(value)){
+      if (this.trainerslist.includes(value)) {
+        this.trainerslist = this.trainerslist.filter((item:any) => item !== value);
+      } else {
+        this.trainerslist.push(value);
+      }
+    }else{
+      event.target.checked = false;
+      alert("Please just select 3 trainers");
     }
   }
+  updateValue(event:any){
+    const value = event.target.value;
+    if(this.droneslist.length < 3 || this.droneslist.includes(value)){
+      if (this.droneslist.includes(value)) {
+        this.droneslist = this.droneslist.filter((item:any) => item !== value);
+      } else {
+        this.droneslist.push(value);
+      }
+    }else{
+      event.target.checked = false;
+      alert("Please just select 3 Drones");
+    }
+    console.log(this.droneslist);
+  }
+
+  calcTimeSlots(){
+    if(this.traineeList.length<4){
+      return Array(this.traineeList.length);
+    }
+    else if(this.traineeList.length == 4){
+      return Array(2);
+    }
+    else if(this.traineeList.length == 5 || this.traineeList.length == 6){
+      return Array(3);
+    }
+    else{
+      return Array(4);
+    }
+  }
+
+
 }

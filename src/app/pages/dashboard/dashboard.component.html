@@ -10,7 +10,7 @@
             <div class="form-group">
               <label for="trainers"><strong>Trainers</strong></label>
               <div class="input-group">
-                <input type="text" class="form-control" id="trainers" placeholder="Enter Trainer's Name">
+                <input type="text" class="form-control" id="trainers" placeholder="Enter Trainers" readonly>
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Select  Trainer</button>
                 </div>
@@ -19,7 +19,7 @@
             <div class="form-group">
               <label for="trainees"><strong>Trainees</strong></label>
               <div class="input-group">
-                <input type="text" class="form-control" id="trainees" placeholder="Enter Trainee's Name">
+                <input type="text" class="form-control" id="traineeForm" placeholder="Add trainee" readonly>
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1">Select Trainee</button>
                 </div>
@@ -33,7 +33,7 @@
               <!-- <select class="form-control" id="uin"> -->
                 <label for="uin"><strong>UIN</strong></label>
                 <div *ngFor="let item of drones" id="uin">
-                  <input type="checkbox" [value]=item.uin>{{item.uin}}
+                  <input type="checkbox" (change)="updateValue($event)" [value]=item.uin>{{item.uin}}
                 </div>
               
                 <!-- <option *ngFor="let item of drones" value="item.name">{{item.uin}}</option> -->
@@ -49,11 +49,11 @@
             </div>
             <div class="form-group">
               <label for="starttime1"><strong>Start-Time (Day 1)</strong></label>
-              <input type="time" class="form-control" id="starttime1">
+              <input *ngFor="let i of calcTimeSlots()" type="time" class="form-control" id="starttime1">
             </div>
             <div class="form-group">
               <label for="starttime2"><strong>Start-Time (Day-2)</strong></label>
-              <input type="time" class="form-control" id="starttime2">
+              <input *ngFor="let i of calcTimeSlots()" type="time" class="form-control" id="starttime2">
             </div>
             <div class="form-group">
               <label for="examiner"><strong>Examiner</strong></label>
@@ -85,11 +85,11 @@
                   </div>
                   <div class="modal-container" *ngFor="let item of trainers">
                     <!-- <label class="checkbox-inline"> -->
-                      <input (change)="onChange(item.name)" type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
+                      <input (change)="onChange($event)" type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
                     <!-- </label> -->
                   </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary"  data-dismiss="modal">Add Trainers</button>
+                  <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="updateTrainerInput()">Add Trainers</button>
                 </div>
               </div>
             </div>
@@ -114,11 +114,15 @@
                       </div>
                     </div>
                     <label for="list">Added trainees:</label>
-                    <ul id="list"></ul>                    
+                    <ng-container *ngFor="let item of traineeList">
+                      <br>
+                      <ul id="list" value=item>{{item}} <button type="button" class="close" (click)="removeTrainee(item)"><span>&times;</span></button></ul>
+                    </ng-container>
+                                        
                   </div>
                  
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Wasssup Homie</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTraineeInput()">Submit</button>
                 </div>
               </div>
             </div>
