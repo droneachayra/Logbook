@@ -58,12 +58,16 @@ router.post('/logbook', (req, res) => {
 //res.json("logbbok work" );
 
    const loguser = new Logbook({
-      trainer: req.body.Trainer,
-      trainee: req.body.Trainee,
-      drone: req.body.Drone,
-      startDate: req.body.Drone,
-      endDate: req.body.Drone,
-      duration: req.body.Drone,
+      Trainer: req.body.Trainer,
+      Trainee: req.body.Trainee,
+      UIN:req.body.UIN,
+      Place_of_Operation:req.body.Place_of_Operation,
+      Date: req.body.Date,
+      Start_day1: req.body.Start_day1,
+      Start_day2: req.body.Start_day2,
+      EXAMINER:req.body.EXAMINER,
+      EXAM_TIME:req.body.EXAM_TIME,
+      EXAM_UIN:req.body.EXAM_UIN,
    })
    loguser.save()
    .then((_) => {

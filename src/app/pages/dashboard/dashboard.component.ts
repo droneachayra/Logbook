@@ -16,16 +16,23 @@ export class DashboardComponent implements OnInit {
   trainers:any;
   trainerslist:any[]=[];
   droneslist:any[]=[];
+  timeslot1:any[]=[];
+  timeslot2:any[]=[];
   drones:any;
+  class:any[]=[];
  
   constructor(private fb: FormBuilder ,private auth: AuthService) {
     this.logbook = this.fb.group({
-      'trainers': ['', Validators.required],
-      'trainee': ['', Validators.required],
-      'drone': ['', Validators.required],
-      'startDate': ['', Validators.required],
-      'endDate': ['', Validators.required],
-      'duration': ['', Validators.required],
+      'Trainer': ['', Validators.required],
+      'Trainee': ['', Validators.required],
+      'UIN': ['', Validators.required],
+      'Place_of_Operation': ['', Validators.required],
+      'DATE': ['', Validators.required],
+      'Start_day1': ['', Validators.required],
+      'Start_day2': ['', Validators.required],
+      'EXAMINER': ['', Validators.required],
+      'EXAM_TIME': ['', Validators.required],
+      'EXAM_UIN': ['', Validators.required],
     }); 
 
   }
@@ -42,8 +49,14 @@ export class DashboardComponent implements OnInit {
   }
 
   newTrainee(){
-    let inputText = (<HTMLInputElement>document.getElementById("trainees")).value;
-		this.traineeList.push(inputText);
+    if (this.traineeList.length < 12) {
+      const traineeName = (<HTMLInputElement>document.getElementById("trainees")).value;
+      this.traineeList.push(traineeName);
+      (<HTMLInputElement>document.getElementById("trainees")).value='';
+    }
+    else{
+      alert("Cant add more than 12 Trainees ");
+    }
   }
 
   removeTrainee(value:any) {
@@ -114,5 +127,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  timeSlot1Value(event:any, i:any){
+    this.timeslot1[i] = event.target.value;
+  }
+
+  timeSlot2Value(event:any, i:any){
+    this.timeslot2[i] = event.target.value;
+  }
 
 }

@@ -49,11 +49,11 @@
             </div>
             <div class="form-group">
               <label for="starttime1"><strong>Start-Time (Day 1)</strong></label>
-              <input *ngFor="let i of calcTimeSlots()" type="time" class="form-control" id="starttime1">
+              <input *ngFor="let item of calcTimeSlots(); let i=index" (change)="timeSlot1Value($event, i)" type="time" class="form-control" id="starttime1">
             </div>
             <div class="form-group">
               <label for="starttime2"><strong>Start-Time (Day-2)</strong></label>
-              <input *ngFor="let i of calcTimeSlots()" type="time" class="form-control" id="starttime2">
+              <input *ngFor="let item of calcTimeSlots(); let i=index" (change)="timeSlot2Value($event, i)" type="time" class="form-control" id="starttime2">
             </div>
             <div class="form-group">
               <label for="examiner"><strong>Examiner</strong></label>
