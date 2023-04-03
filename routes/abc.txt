@@ -1,25 +1,14 @@
-{ _id: new ObjectId("64243caa67a2f161280ffd9d"), name: 'Neha', __v: 0 },{
-  _id: new ObjectId("64243cb767a2f161280ffda1"),
-  name: 'Omkar',
-  __v: 0
-},{
-  _id: new ObjectId("64243cc067a2f161280ffda3"),
-  name: 'Aditya',
-  __v: 0
-},{
-  _id: new ObjectId("64243cc967a2f161280ffda5"),
-  name: 'Amit T',
-  __v: 0
-},{
-  _id: new ObjectId("64243ccd67a2f161280ffda7"),
-  name: 'Amit S',
-  __v: 0
-},{
-  _id: new ObjectId("64243cda67a2f161280ffda9"),
-  name: 'Mayur',
-  __v: 0
-},{
-  _id: new ObjectId("6425370c7389a211d07a3713"),
-  name: 'Vijay',
+{
+  Trainer: [ 'Neha' ],
+  Trainee: [ 'omkar' ],
+  UIN: [ 'UA0003X' ],
+  Place_of_Operation: 'Pune',
+  DATE: '25-4-2023',
+  Start_day1: [ '01:02' ],
+  Start_day2: [ '03:03' ],
+  EXAMINER: [ 'Aditya' ],
+  EXAM_TIME: [ '04:05' ],
+  EXAM_UIN: [ 'UA0003W' ],
+  _id: new ObjectId("642a879090bdd355735c3fdb"),
   __v: 0
 }

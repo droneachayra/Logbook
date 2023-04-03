@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
               <label for="startday1"><strong>Start-Date </strong></label>
-              <input type="number" class="form-control" formControlName="DATE" id="startday1">
+              <input (change)="setDate()" type="date" class="form-control" id="startday1">
             </div>
             <div class="form-group">
               <label for="starttime1"><strong>Start-Time (Day 1)</strong></label>

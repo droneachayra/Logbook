@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   examiner:any[]=[];
   exam_time:any[]=[];
   exam_uin:any[]=[];
+  date:any;
 	list = document.getElementById("list");
   trainers:any;
   drones:any;
@@ -101,7 +102,6 @@ export class DashboardComponent implements OnInit {
       event.target.checked = false;
       alert("Please just select 3 Drones");
     }
-    console.log(this.droneslist);
   }
 
   calcTimeSlots(){
@@ -129,7 +129,6 @@ export class DashboardComponent implements OnInit {
 
   updateExaminer(){
     this.examiner.push((<HTMLInputElement>document.getElementById("examiner")).value);
-    console.log(this.examiner)
   }
   
   updateExamTime(){
@@ -160,10 +159,23 @@ export class DashboardComponent implements OnInit {
     this.logbook.controls['EXAMINER'].setValue(this.examiner);
     this.logbook.controls['EXAM_TIME'].setValue(this.exam_time);
     this.logbook.controls['EXAM_UIN'].setValue(this.exam_uin);
-    
+    this.logbook.controls['DATE'].setValue(this.date);
     const data = this.logbook.value;
-    this.auth.SubmitLogbook(data);
-
+    // this.auth.SubmitLogbook(data);
+    this.auth.SubmitLogbook(data).subscribe(res => {
+      if (res.success) {
+        alert("success");
+      }
+    }, err => {
+      alert(err);
+    });
   }
 
+  setDate(){
+    let date = new Date((<HTMLInputElement>document.getElementById("startday1")).value);
+    let dd = date.getDate();
+    let mm = 1+date.getMonth();
+    let yyyy = date.getFullYear();
+    this.date = dd+"-"+mm+"-"+yyyy;
+  }
 }

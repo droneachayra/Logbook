@@ -31,10 +31,8 @@ export class AuthService {
     return this.http.get(url);
   }
 
-  SubmitLogbook(data:any): Observable<any> {
-    console.log(data)
-    const url = `${this.apiUrl}logbook`;
-    return this.http.post('http://localhost:8080/auth/logbook', data);
+  SubmitLogbook(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}logbook`, data);
   }
 
 }

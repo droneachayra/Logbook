@@ -56,13 +56,12 @@ router.post('/login', (req, res) => {
 
 router.post('/logbook', (req, res) => {
 //res.json("logbbok work" );
-   console.log(req.body, "hehe")
    const loguser = new Logbook({
       Trainer: req.body.Trainer,
       Trainee: req.body.Trainee,
       UIN:req.body.UIN,
       Place_of_Operation:req.body.Place_of_Operation,
-      Date: req.body.Date,
+      DATE: req.body.DATE,
       Start_day1: req.body.Start_day1,
       Start_day2: req.body.Start_day2,
       EXAMINER:req.body.EXAMINER,
@@ -71,15 +70,23 @@ router.post('/logbook', (req, res) => {
    })
    loguser.save()
    .then((_) => {
+      let python;
+      python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', loguser]);
       res.json({ success: true, message: "Log has been created" })
    })
    .catch((err) => {
       if (err.code === 11000) {
+         console.log(err)
          return res.json({ success: false, message: "Trainee already exists!" })
       }
+      console.log(err);
       res.json({ succses: false, message: "Authentication failed" })
    })
 });
+
+router.get('/test', (req, res) => {
+   console.log("test works")
+})
 
 
 /*************************************************/
