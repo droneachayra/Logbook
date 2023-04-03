@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   traineeList:any[] = [];
   trainerslist:any[]=[];
   droneslist:any[]=[];
+  droneCat:any[]=[];
   timeslot1:any[]=[];
   timeslot2:any[]=[];
   examiner:any[]=[];
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
       'Trainer': ['', Validators.required],
       'Trainee': ['', Validators.required],
       'UIN': ['', Validators.required],
+      'Category':['', Validators.required],
       'Place_of_Operation': ['', Validators.required],
       'DATE': ['', Validators.required],
       'Start_day1': ['', Validators.required],
@@ -41,23 +43,28 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit():void{
     this.auth.gettrainer().subscribe((data) => {
-      this.trainers = data
+      this.trainers = data;
+      this.trainers.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
     })  
 
     this.auth.getdrone().subscribe((data) => {
       this.drones = data;
+      this.droneCat[0] = this.drones[0].Category;
     })  
 
   }
 
-  newTrainee(){
-    if (this.traineeList.length < 12) {
-      const traineeName = (<HTMLInputElement>document.getElementById("trainees")).value;
-      this.traineeList.push(traineeName);
-      (<HTMLInputElement>document.getElementById("trainees")).value='';
-    }
-    else{
-      alert("Cant add more than 12 Trainees ");
+  newTrainee() {
+    const traineeName = (<HTMLInputElement>document.getElementById("trainees")).value;
+    if (traineeName.trim() !== '') {
+      if (this.traineeList.length < 12) {
+        this.traineeList.push(traineeName);
+        (<HTMLInputElement>document.getElementById("trainees")).value='';
+      } else {
+        alert("Can't add more than 12 Trainees");
+      }
+    } else {
+      alert("Please enter a trainee name");
     }
   }
 
@@ -160,6 +167,7 @@ export class DashboardComponent implements OnInit {
     this.logbook.controls['EXAM_TIME'].setValue(this.exam_time);
     this.logbook.controls['EXAM_UIN'].setValue(this.exam_uin);
     this.logbook.controls['DATE'].setValue(this.date);
+    this.logbook.controls['Category'].setValue('r');
     const data = this.logbook.value;
     // this.auth.SubmitLogbook(data);
     this.auth.SubmitLogbook(data).subscribe(res => {

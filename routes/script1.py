@@ -9,13 +9,21 @@ import math
 import datetime as dt
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-json_path = sys.argv[1]
+
 excel_path = r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\test.xlsx'
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-with open (json_path) as file:
-    data = json.load(file)
+with open(r'testv2.txt', 'w') as f:
+    f.write("hihi")
+
+
+# json_path = r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\sample.json'
+
+with open (r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\testv1.txt', 'r') as file:
+    data = file.readlines()
+
+data = json.loads(data[0])
 
 wb = Workbook()
 

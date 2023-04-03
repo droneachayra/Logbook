@@ -57,21 +57,22 @@ router.post('/login', (req, res) => {
 router.post('/logbook', (req, res) => {
 //res.json("logbbok work" );
    const loguser = new Logbook({
-      Trainer: req.body.Trainer,
-      Trainee: req.body.Trainee,
-      UIN:req.body.UIN,
-      Place_of_Operation:req.body.Place_of_Operation,
-      DATE: req.body.DATE,
-      Start_day1: req.body.Start_day1,
-      Start_day2: req.body.Start_day2,
-      EXAMINER:req.body.EXAMINER,
-      EXAM_TIME:req.body.EXAM_TIME,
-      EXAM_UIN:req.body.EXAM_UIN,
+      "Trainer": req.body.Trainer,
+      "Trainee": req.body.Trainee,
+      "UIN":req.body.UIN,
+      "Category":req.body.Category,
+      "Place_of_Operation":req.body.Place_of_Operation,
+      "DATE": req.body.DATE,
+      "Start_day1": req.body.Start_day1,
+      "Start_day2": req.body.Start_day2,
+      "EXAMINER":req.body.EXAMINER,
+      "EXAM_TIME":req.body.EXAM_TIME,
+      "EXAM_UIN":req.body.EXAM_UIN,
    })
    loguser.save()
    .then((_) => {
       let python;
-      python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', loguser]);
+      python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', JSON.stringify(eval(loguser))]);
       res.json({ success: true, message: "Log has been created" })
    })
    .catch((err) => {
