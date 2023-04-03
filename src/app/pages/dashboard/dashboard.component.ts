@@ -10,16 +10,17 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class DashboardComponent implements OnInit {
   logbook!: FormGroup;
-  droneInfo!: FormGroup
   traineeList:any[] = [];
-	list = document.getElementById("list");
-  trainers:any;
   trainerslist:any[]=[];
   droneslist:any[]=[];
   timeslot1:any[]=[];
   timeslot2:any[]=[];
+  examiner:any[]=[];
+  exam_time:any[]=[];
+  exam_uin:any[]=[];
+	list = document.getElementById("list");
+  trainers:any;
   drones:any;
-  class:any[]=[];
  
   constructor(private fb: FormBuilder ,private auth: AuthService) {
     this.logbook = this.fb.group({
@@ -73,16 +74,6 @@ export class DashboardComponent implements OnInit {
   updateTrainerInput(){
     (<HTMLInputElement>document.getElementById("trainers")).value = this.trainerslist.toString();
   }
-     
-  logbook_submit() {
-
-  }
-
-  getDroneInfo(){
-    const info = this.droneInfo.value;
-    this.logbook.controls['drone'].setValue(info);
-    this
-  }
 
   onChange(event:any){
     const value = event.target.value;
@@ -94,9 +85,10 @@ export class DashboardComponent implements OnInit {
       }
     }else{
       event.target.checked = false;
-      alert("Please just select 3 trainers");
+      alert("Please just select 3 Trainers");
     }
   }
+
   updateValue(event:any){
     const value = event.target.value;
     if(this.droneslist.length < 3 || this.droneslist.includes(value)){
@@ -133,6 +125,45 @@ export class DashboardComponent implements OnInit {
 
   timeSlot2Value(event:any, i:any){
     this.timeslot2[i] = event.target.value;
+  }
+
+  updateExaminer(){
+    this.examiner.push((<HTMLInputElement>document.getElementById("examiner")).value);
+    console.log(this.examiner)
+  }
+  
+  updateExamTime(){
+    this.exam_time.push((<HTMLInputElement>document.getElementById("examtime")).value);
+  }
+
+  updateExamUIN(){
+    this.exam_uin.push((<HTMLInputElement>document.getElementById("examuin")).value)
+  }
+
+  logbook_submit() {
+    //   Trainer
+    //   Trainee
+    //   UIN
+    //   Place_of_Operation--
+    //   DATE--
+    //   Start_day1--
+    //   Start_day2--
+    //   EXAMINER--
+    //   EXAM_TIME--
+    //   EXAM_UIN--
+
+    this.logbook.controls['Trainer'].setValue(this.trainerslist);
+    this.logbook.controls['Trainee'].setValue(this.traineeList);
+    this.logbook.controls['UIN'].setValue(this.droneslist);
+    this.logbook.controls['Start_day1'].setValue(this.timeslot1);
+    this.logbook.controls['Start_day2'].setValue(this.timeslot2);
+    this.logbook.controls['EXAMINER'].setValue(this.examiner);
+    this.logbook.controls['EXAM_TIME'].setValue(this.exam_time);
+    this.logbook.controls['EXAM_UIN'].setValue(this.exam_uin);
+    
+    const data = this.logbook.value;
+    this.auth.SubmitLogbook(data);
+
   }
 
 }

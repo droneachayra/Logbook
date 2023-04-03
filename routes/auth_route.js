@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Logboook = require('../models/logbook');
+const Logbook = require('../models/logbook');
 const User = require('../models/user');
 const Trainer = require('../models/trainers');
 const Drone = require('../models/drones');
@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
 
 router.post('/logbook', (req, res) => {
 //res.json("logbbok work" );
-
+   console.log(req.body, "hehe")
    const loguser = new Logbook({
       Trainer: req.body.Trainer,
       Trainee: req.body.Trainee,

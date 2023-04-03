@@ -41,11 +41,11 @@
             </div>
             <div class="form-group">
               <label for="placeofop"><strong>Place of Operation</strong></label>
-              <input type="text" class="form-control" id="placeofop" placeholder="Enter Place of Operation">
+              <input type="text" class="form-control" formControlName="Place_of_Operation" id="placeofop" placeholder="Enter Place of Operation">
             </div>
             <div class="form-group">
               <label for="startday1"><strong>Start-Date </strong></label>
-              <input type="number" class="form-control" id="startday1">
+              <input type="number" class="form-control" formControlName="DATE" id="startday1">
             </div>
             <div class="form-group">
               <label for="starttime1"><strong>Start-Time (Day 1)</strong></label>
@@ -57,19 +57,21 @@
             </div>
             <div class="form-group">
               <label for="examiner"><strong>Examiner</strong></label>
-              <select class="form-control" id="examiner">
-                <option *ngFor="let item of trainers" value="item.name">{{item.name}}</option>
+              <select class="form-control" id="examiner" (change)="updateExaminer()">
+                <option selected disabled>--Select Examiner--</option>
+                <option *ngFor="let item of trainers" [value]=item.name>{{item.name}}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="examtime"><strong>Exam - Time</strong></label>
-              <input type="time" class="form-control" id="examtime">
+              <input type="time" class="form-control" id="examtime" (change)="updateExamTime()" id="examtime">
             </div>
           
             <div class="form-group">
               <label for="examuin"><strong>UIN</strong></label>
-              <select class="form-control" id="examuin">
-                <option *ngFor="let item of drones" value="item">{{item.uin}}</option>
+              <select class="form-control" id="examuin" (change)="updateExamUIN()">
+                <option selected disabled>--Select UIN--</option>
+                <option *ngFor="let item of drones" [value]=item.uin>{{item.uin}}</option>
               </select>
             </div>
 
@@ -85,7 +87,7 @@
                   </div>
                   <div class="modal-container" *ngFor="let item of trainers">
                     <!-- <label class="checkbox-inline"> -->
-                      <input (change)="onChange($event)" type="checkbox" name="trainers" formControlName="trainers" value="{{item.name}}" > {{ item.name }}
+                      <input (change)="onChange($event)" type="checkbox" name="trainers" value="{{item.name}}" > {{ item.name }}
                     <!-- </label> -->
                   </div>
                 <div class="modal-footer">
@@ -117,18 +119,17 @@
                     <ng-container *ngFor="let item of traineeList">
                       <br>
                       <ul id="list" value=item>{{item}} <button type="button" class="close" (click)="removeTrainee(item)"><span>&times;</span></button></ul>
-                    </ng-container>
-                                        
+                    </ng-container>                                    
+                  </div>                 
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTraineeInput()">Submit</button>
                   </div>
-                 
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTraineeInput()">Submit</button>
                 </div>
               </div>
             </div>
-            </div>
+
             <div class="text-center">
-              <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+              <button type="submit" id="log-submit" (click)="logbook_submit()" class="btn btn-primary btn-block mt-4">Submit</button>
             </div>
           </form>
         </div>
