@@ -1,0 +1,1 @@
+{"Trainer":["Vijay"],"Trainee":["Yash"],"UIN":["UA0003X"],"Category":["r"],"Place_of_Operation":"Pune","DATE":"3-4-2023","Start_day1":["03:04"],"Start_day2":["04:05"],"EXAMINER":["Neha"],"EXAM_TIME":["05:06"],"EXAM_UIN":["UA0003X","UA0003W"],"_id":"642aa445b9a6f95cb35a7ffc","__v":0}

@@ -1,1 +1,1 @@
-hihi
+{"Trainer":["Neha"],"Trainee":["not neha"],"UIN":["UA0003X"],"Category":["r"],"Place_of_Operation":"okidk","DATE":"2-3-2022","Start_day1":["00:56"],"Start_day2":["23:53"],"EXAMINER":["Neha"],"EXAM_TIME":["03:00","03:01","03:02","03:03","03:04","03:05"],"EXAM_UIN":["UA0003X"],"_id":"642d2ab0214417b5638b8418","__v":0}

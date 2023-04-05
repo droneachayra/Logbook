@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators ,FormArray,FormControl, Form} from '@angular/forms';
 import { json } from 'body-parser';
 import { AuthService } from 'src/app/service/auth.service';
+import * as FileSaver from 'file-saver';
+import * as xlsx from 'xlsx';
 
 @Component({
   selector: 'app-dashboard',
@@ -172,7 +174,12 @@ export class DashboardComponent implements OnInit {
     // this.auth.SubmitLogbook(data);
     this.auth.SubmitLogbook(data).subscribe(res => {
       if (res.success) {
-        alert("success");
+        console.log(res.message)
+        const workbook = xlsx.read(res.message.data, { type: 'buffer' });
+        const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+        const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+        FileSaver.saveAs(blob, "abc.xlsx")
+        alert("Success");
       }
     }, err => {
       alert(err);

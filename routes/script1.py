@@ -5,22 +5,23 @@ from openpyxl.styles import Font
 import json
 import csv
 import math
+import pymongo
 
 import datetime as dt
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-excel_path = r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\test.xlsx'
+excel_path = r'C:\Users\utkri\OneDrive\Desktop\Logbook\test.xlsx'
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 with open(r'testv2.txt', 'w') as f:
-    f.write("hihi")
+    f.write(sys.argv[1])
 
 
-# json_path = r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\sample.json'
+# json_path = r'C:\Users\utkri\OneDrive\Desktsop\Logbook\routes\sample.json'
 
-with open (r'C:\Users\utkri\OneDrive\Desktop\Logbook\routes\testv1.txt', 'r') as file:
+with open (r'testv2.txt', 'r') as file:
     data = file.readlines()
 
 data = json.loads(data[0])
@@ -274,7 +275,7 @@ for student in range(count_of_trainees):
                 rpic = ""
         
         if(total_time1 == datetime(1, 1, 1, 1, 15)):
-            print("*************")
+            # print("*************")
             # print(total_time1)
             st += timedelta(minutes=15)
             et += timedelta(minutes=15)
@@ -295,7 +296,7 @@ for student in range(count_of_trainees):
 
         ws2.append([day2, uin, clas, category, trer, trainee, place, start1, end1, duration, dual, rpic, cat1, ex])
         # ws2.append([day2, uin, clas, category, trer, trainee, place, st.time(), et.time(), duration, dual, rpic, cat1, ex])
-        print([day2, uin, clas, category, trer, trainee, place, start1, end1, duration, dual, rpic, cat1, ex])
+        # print([day2, uin, clas, category, trer, trainee, place, start1, end1, duration, dual, rpic, cat1, ex])
 
         test_header = [day2, uin, clas, category, trer, trainee, place, start1, end1, duration, dual, rpic, cat1, ex]
         # print("ST", st, "et", et)
@@ -422,3 +423,4 @@ if(len(data["UIN"]) == 3):
 # ws5.append(drone1_day1)
 # ws4.append(drone1_day2)
 wb.save(excel_path)
+print(wb)

@@ -6,6 +6,10 @@ const Drone = require('../models/drones');
 const bcrypt = require('bcrypt');
 const jwt =require('jsonwebtoken');
 const spawn = require('child_process').spawn;
+const fs = require('fs');
+const FileSaver = require('file-saver')
+// import FileSaver from "file-saver";
+const xlsx = require('xlsx')
 
 router.post('/register', (req, res) => {
 //  res.json("register work" );
@@ -73,7 +77,14 @@ router.post('/logbook', (req, res) => {
    .then((_) => {
       let python;
       python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', JSON.stringify(eval(loguser))]);
-      res.json({ success: true, message: "Log has been created" })
+      python.stdout.on('data', function (data) {
+         dataToSend = data;
+         // console.log(data)
+         fs.readFile('test.xlsx', function(err, buffer){
+            res.json({success: true, message: buffer});
+       })
+      });
+      // res.json({ success: true, message: "Log has been created" })
    })
    .catch((err) => {
       if (err.code === 11000) {
@@ -139,32 +150,18 @@ router.get('/getDrone', (req, res) => {
 
 router.get('/python', (req, res) => {
    let python;
-   Trainer.find({}).exec().then((result)=>{
-      if(result != null){
-         python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', result]);
-      }
- 
-   })
+   python = spawn('python', ['C:/Users/utkri/OneDrive/Desktop/Logbook/routes/script1.py', 'result']);
+
    var dataToSend;
-   // spawn new child process to call the python script
-   
-   // collect data from script
 
-   // python.stdout.on('data', function (data) {
-   //  console.log('Pipe data from python script ...');
-   //  dataToSend = data.toString();
-   // });
+   python.stdout.on('data', function (data) {
+      dataToSend = data;
+      // console.log(data)
+      fs.readFile('test.xlsx', function(err, buffer){
+         res.json({message: buffer});
+    })
+   });
 
-   // python.stderr.on('data', (data) => {
-   //    console.log(`stderr: ${data}`);
-   //  });
-   // // in close event we are sure that stream from child process is closed
-   // python.on('close', (code) => {
-   // console.log(`child process close all stdio with code ${code}`);
-   // // send data to browser
-   // res.send(dataToSend)
-   // });
-   
   })
 
 module.exports = router
