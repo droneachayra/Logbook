@@ -26,13 +26,16 @@ export class DashboardComponent implements OnInit {
     
       trainies: this.fb.array([]) ,  
     }); 
+    
     this.trainies;
   }
   ngOnInit():void{
 
   }
+  
   trainies() : FormArray {  
     return this.logbook.get("trainies") as FormArray  
+    console.log()
   }  
      
   newTrainy(): FormGroup {  
